@@ -12,36 +12,49 @@ public class StudyDashboard {
 
     private void printParticipants(int eventId) throws IOException {
         // Get github issue to check homework
-        GitHub gitHub = GitHub.connect();
-        GHRepository repository = gitHub.getRepository("whiteship/live-study");
-        GHIssue issue = repository.getIssue(eventId);
+        GHIssue issue = getGhIssue(eventId);
 
         // Get participants
-        Set<String> participants = new HashSet<>();
-        issue.getComments().forEach(c -> participants.add(c.getUserName()));
+        Set<String> participants = getUsernames(issue);
 
         // Print participants
+        print(participants);
+    }
+
+    private static void print(Set<String> participants) {
         participants.forEach(System.out::println);
     }
 
-    private void printReviewers() throws IOException {
-        // Get github issue to check reviews
+    private static Set<String> getUsernames(GHIssue issue) throws IOException {
+        Set<String> participants = new HashSet<>();
+        issue.getComments().forEach(c -> participants.add(c.getUserName()));
+        return participants;
+    }
+
+    private static GHIssue getGhIssue(int eventId) throws IOException {
         GitHub gitHub = GitHub.connect();
         GHRepository repository = gitHub.getRepository("whiteship/live-study");
-        GHIssue issue = repository.getIssue(30);
+        GHIssue issue = repository.getIssue(eventId);
+        return issue;
+    }
+
+    private void printReviewers() throws IOException {
+        // Get github issue to check homework
+        GHIssue issue = getGhIssue(30);
 
         // Get reviewers
         Set<String> reviewers = new HashSet<>();
         issue.getComments().forEach(c -> reviewers.add(c.getUserName()));
 
         // Print reviewers
-        reviewers.forEach(System.out::println);
+        print(reviewers);
     }
 
     public static void main(String[] args) throws IOException {
         StudyDashboard studyDashboard = new StudyDashboard();
         studyDashboard.printReviewers();
         studyDashboard.printParticipants(15);
+
     }
 
 }
