@@ -6,6 +6,9 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * 아주 잠시 주석 달기
+ */
 class ShipmentTest {
 
     @Test
