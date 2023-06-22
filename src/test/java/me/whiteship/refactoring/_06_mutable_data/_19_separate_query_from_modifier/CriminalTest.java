@@ -16,6 +16,9 @@ class CriminalTest {
 
         found = criminal.alertForMiscreant(List.of(new Person("John"), new Person("Don")));
         assertEquals("John", found);
+
+        found = criminal.alertForMiscreant(List.of(new Person("Keesun"), new Person("Whiteship")));
+        assertEquals("", found);
     }
 
 }
