@@ -6,10 +6,12 @@ import java.time.Year;
 public class Client2 {
 
     private double base;
+
     private double taxableCharge;
 
     public Client2(Reading reading) {
         this.base = baseRate(reading.month(), reading.year()) * reading.quantity();
+
         this.taxableCharge = Math.max(0, this.base - taxThreshold(reading.year()));
     }
 
