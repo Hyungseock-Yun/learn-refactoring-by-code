@@ -15,4 +15,7 @@ public class Reservation {
 
     private boolean paid;
 
+    private String courtNumber;
+
+    // Refactoring > Push members up/down으로 필드 이동 가능
 }
