@@ -6,6 +6,8 @@ public class Person {
 
     private Department department;
 
+    private Person manager;
+
     public Person(String name) {
         this.name = name;
     }
@@ -20,9 +22,16 @@ public class Person {
 
     public void setDepartment(Department department) {
         this.department = department;
+//        setManager(department);
     }
 
-    Person getManager(Person keesun) {
-        return keesun.getDepartment().getManager();
+//    public void setManager(Department department) {
+//        this.manager = department.getManager();
+//    }
+
+    Person getManager() {
+//        return this.department.getManager();
+        // department의 manager에서 manager로 코드를 변경해도 client쪽에 영향 없음
+        return this.manager;
     }
 }
